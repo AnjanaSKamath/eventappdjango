@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alkatra&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Details</title>
+</head>
+<body>
+    <section id="event-details">
+        <h1 class="event-title">{{event.event_title}}</h1>
+        <p class="event-date">Date:{{event.date}}</p>
+        <p class="event-location">Location:{{event.location}}</p>
+        <P class="event description">Description:{{event.description}}</P>
+        <form action="{% url 'eventdetail' event.pk %}" method="POST" class="apply-form">
+            <h3>Apply for this Event</h3>
+            {% csrf_token %}
+            
+            {{form.as_p}}
+            <input class="apply-btn" type="submit" value="Apply">
+        </form>
+    </section>
+</body>
+</html>
